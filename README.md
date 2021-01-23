@@ -1,4 +1,6 @@
 # Crux
+[简体中文](https://github.com/kakera-avg-engine/crux/blob/dev/master/README_zh_hans.md) | [日本語](https://github.com/kakera-avg-engine/crux/blob/dev/master/README_ja_jp.md)
+
 A cross-platform 2D graphic library for Kakera AVG Engine.
 
 ## What is it?
