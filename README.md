@@ -19,7 +19,7 @@ Here is a simple guide that the basic usage of Crux library.
 
 ### 1. Create a window on your platform.
 
-Create a window on your platform, you can use [SDL](https://www.libsdl.org/) or [GLFW](https://www.glfw.org/) or any other libraries you like.  You can also use native APIs, it's doesn't matter. It's the only important thing that there is a window. Do not remember to get the handle of the window, if you are using X11, display type is also necessary.
+Create a window on your platform, you can use [SDL](https://www.libsdl.org/) or [GLFW](https://www.glfw.org/) or any other libraries you like.  You can also use native APIs, it's doesn't matter. It's the only important thing that there is a window. Do not forget to get the handle of the window, if you are using X11, display type is also necessary.
 
 ###  2. Create a Crux surface.
 
