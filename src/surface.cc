@@ -9,20 +9,30 @@ crux::Surface::Surface(crux::Backend backend,
                        crux::Resolution resolution) {
   if (backend == crux::Backend::kAuto) {
     SelectRightBackend();
+  } else {
+    backend_ = backend;
   }
   InitActualBackend(platform_data);
 }
 
-crux::Backend crux::Surface::backend() {
+crux::Backend crux::Surface::backend() const {
   return backend_;
 }
 
-crux::Resolution crux::Surface::resolution() {
+crux::Resolution crux::Surface::resolution() const {
   return resolution_;
 }
 
 void crux::Surface::set_resolution(crux::Resolution resolution) {
   resolution_ = resolution;
+}
+
+void* crux::Surface::ReleaseContext() {
+  return actual_backend_->ReleaseContext();
+}
+
+void crux::Surface::Draw(const crux::RenderObject& render_object) {
+
 }
 
 void crux::Surface::UpdateFrame() {

@@ -1,19 +1,20 @@
 #include "backend_opengl.h"
 #include <stdexcept>
 #include "glad.h"
-// Headers of WGL and WinAPI error handling.
+// Headers of WGL.
 #ifdef _WIN32
 # include <Windows.h>
 # include <WinUser.h>
 # include <wingdi.h>
-# include <errhandlingapi.h>
 #endif // _WIN32
 
 crux::internal::BackendOpenGL::~BackendOpenGL() {
-  #ifdef _WIN32
-  wglMakeCurrent(NULL, NULL);
-  wglDeleteContext(static_cast<HGLRC>(context_));
-  #endif // _WIN32
+  if (context_) {
+    #ifdef _WIN32
+    wglMakeCurrent(NULL, NULL);
+    wglDeleteContext(static_cast<HGLRC>(context_));
+    #endif // _WIN32
+  }
 }
 
 void crux::internal::BackendOpenGL::Init(
@@ -32,17 +33,12 @@ void crux::internal::BackendOpenGL::Init(
       PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER,
       PFD_TYPE_RGBA,
       32,  // Colordepth of framebuffer
-      0, 0, 0, 0, 0, 0,
-      0,
-	    0,
-	    0,
-	    0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       24,  // Bits of depthbuffer
       8,   // Bits of stencilbuffer
       0,
       PFD_MAIN_PLANE,
-	    0,
-    	0, 0, 0
+      0, 0, 0, 0
     };
     int pixel_format = ChoosePixelFormat(hdc, &pfd);
     SetPixelFormat(hdc, pixel_format, &pfd);

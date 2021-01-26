@@ -8,10 +8,11 @@ namespace internal {
 
 class BackendInterface {
  public:
-  virtual ~BackendInterface() { context_ = nullptr; }
+  virtual ~BackendInterface();
 
   virtual void Init(const PlatformData& platform_data) = 0;
-  operator bool() const { return context_ != nullptr; }
+  void* ReleaseContext();
+  operator bool() const;
  protected:
   void* context_ = nullptr;
 };
