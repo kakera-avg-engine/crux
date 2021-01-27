@@ -1,19 +1,20 @@
-#include "backend_opengl.h"
+// Copyright 2021 Drawoceans
+#include "src/backend_opengl.h"
 #include <stdexcept>
-#include "glad.h"
+#include "src/glad.h"
 // Headers of WGL.
 #ifdef _WIN32
 # include <Windows.h>
 # include <WinUser.h>
 # include <wingdi.h>
-#endif // _WIN32
+#endif  // _WIN32
 
 crux::internal::BackendOpenGL::~BackendOpenGL() {
   if (context_) {
     #ifdef _WIN32
     wglMakeCurrent(NULL, NULL);
     wglDeleteContext(static_cast<HGLRC>(context_));
-    #endif // _WIN32
+    #endif  // _WIN32
   }
 }
 
@@ -25,7 +26,7 @@ void crux::internal::BackendOpenGL::Init(
   if (!platform_data.context) {
     // No context is given, create.
     #ifdef _WIN32
-    HWND hwnd = static_cast<HWND>(platform_data.native_window_handle);
+    HWND hwnd = reinterpret_cast<HWND>(platform_data.native_window_handle);
     HDC hdc = GetDC(hwnd);
     PIXELFORMATDESCRIPTOR pfd {
       sizeof(PIXELFORMATDESCRIPTOR),
@@ -43,14 +44,16 @@ void crux::internal::BackendOpenGL::Init(
     int pixel_format = ChoosePixelFormat(hdc, &pfd);
     SetPixelFormat(hdc, pixel_format, &pfd);
     context_ = wglCreateContext(hdc);
-    wglMakeCurrent(hdc, static_cast<HGLRC>(context_));
-    #endif // _WIN32
+    wglMakeCurrent(hdc, reinterpret_cast<HGLRC>(context_));
+    gladLoadGLLoader(reinterpret_cast<GLADloadproc>(wglGetProcAddress));
+    #endif  // _WIN32
   } else {
     context_ = platform_data.context;
     #ifdef _WIN32
-    HWND hwnd = static_cast<HWND>(platform_data.native_window_handle);
+    HWND hwnd = reinterpret_cast<HWND>(platform_data.native_window_handle);
     HDC hdc = GetDC(hwnd);
-    wglMakeCurrent(hdc, static_cast<HGLRC>(context_));
-    #endif // _WIN32
+    wglMakeCurrent(hdc, reinterpret_cast<HGLRC>(context_));
+    gladLoadGLLoader(reinterpret_cast<GLADloadproc>(wglGetProcAddress));
+    #endif  // _WIN32
   }
 }

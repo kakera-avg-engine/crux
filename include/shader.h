@@ -1,5 +1,6 @@
-#ifndef CRUX_INCLUDE_SHADER_H_
-#define CRUX_INCLUDE_SHADER_H_
+// Copyright 2021 Drawoceans
+#ifndef INCLUDE_SHADER_H_
+#define INCLUDE_SHADER_H_
 
 #include <cstdint>
 #include <memory>
@@ -28,6 +29,6 @@ class Shader {
   std::unique_ptr<internal::ShaderInterface> actual_shader_;
 };
 
-} // namespace crux
+}  // namespace crux
 
-#endif // CRUX_INCLUDE_SHADER_H_
+#endif  // INCLUDE_SHADER_H_

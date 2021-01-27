@@ -1,5 +1,6 @@
-#ifndef CRUX_INCLUDE_PLATFORM_DATA_H_
-#define CRUX_INCLUDE_PLATFORM_DATA_H_
+// Copyright 2021 Drawoceans
+#ifndef INCLUDE_PLATFORM_DATA_H_
+#define INCLUDE_PLATFORM_DATA_H_
 
 namespace crux {
 
@@ -11,6 +12,6 @@ struct PlatformData {
   void* context = nullptr;
 };
 
-} // namespace crux
+}  // namespace crux
 
-#endif // CRUX_INCLUDE_PLATFORM_DATA_H_
+#endif  // INCLUDE_PLATFORM_DATA_H_

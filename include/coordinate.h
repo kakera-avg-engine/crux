@@ -1,15 +1,20 @@
-#ifndef CRUX_INCLUDE_COORDINATE_H_
-#define CRUX_INCLUDE_COORDINATE_H_
+// Copyright 2021 Drawoceans
+#ifndef INCLUDE_COORDINATE_H_
+#define INCLUDE_COORDINATE_H_
 
 namespace crux {
 
 struct Coordinate {
   union {
-    struct { int x, y; };
-    struct { int s, t; };
+    struct {
+      int x, y;
+    };
+    struct {
+      int s, t;
+    };
   };
 };
 
-} // namespace crux
+}  // namespace crux
 
-#endif // CRUX_INCLUDE_COORDINATE_H_
+#endif  // INCLUDE_COORDINATE_H_

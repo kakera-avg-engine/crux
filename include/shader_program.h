@@ -1,9 +1,10 @@
-#ifndef CRUX_INCLUDE_SHADER_PROGRAM_H_
-#define CRUX_INCLUDE_SHADER_PROGRAM_H_
+// Copyright 2021 Drawoceans
+#ifndef INCLUDE_SHADER_PROGRAM_H_
+#define INCLUDE_SHADER_PROGRAM_H_
 
 #include <vector>
 #include <memory>
-#include "shader.h"
+#include "include/shader.h"
 
 namespace crux {
 
@@ -12,12 +13,14 @@ namespace internal { class ShaderProgramInterface; }
 
 class ShaderProgram {
  public:
-  ShaderProgram(std::vector<std::unique_ptr<Shader>> shaders);
+  explicit ShaderProgram(std::vector<std::unique_ptr<Shader>> shaders);
 
  private:
   std::unique_ptr<internal::ShaderProgramInterface> actual_program_;
+  int program_id_ = -1;
+  static int program_count_;
 };
 
-} // namespace crux
+}  // namespace crux
 
-#endif // CRUX_INCLUDE_SHADER_PROGRAM_H_
+#endif  // INCLUDE_SHADER_PROGRAM_H_

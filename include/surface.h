@@ -1,11 +1,13 @@
-#ifndef CRUX_INCLUDE_SURFACE_H_
-#define CRUX_INCLUDE_SURFACE_H_
+// Copyright 2021 Drawoceans
+#ifndef INCLUDE_SURFACE_H_
+#define INCLUDE_SURFACE_H_
 
 #include <memory>
-#include "platform_data.h"
-#include "backends.h"
-#include "resolution.h"
-#include "render_object.h"
+#include "include/platform_data.h"
+#include "include/backends.h"
+#include "include/resolution.h"
+#include "include/color.h"
+#include "include/render_object.h"
 
 namespace crux {
 
@@ -27,9 +29,12 @@ class Surface {
   Resolution resolution() const;
   void set_resolution(Resolution resolution);
 
+  Color clear_color() const;
+  void set_clear_color(Color clear_color);
+
   // Release the graphic context to manage it manually.
   void* ReleaseContext();
-  void Draw(const RenderObject& render_object);
+  void Draw(RenderObject* render_object);
   void UpdateFrame();
 
  private:
@@ -38,9 +43,10 @@ class Surface {
 
   Backend backend_;
   Resolution resolution_;
+  Color clear_color_;
   std::unique_ptr<internal::BackendInterface> actual_backend_;
 };
 
-} // namespace crux
+}  // namespace crux
 
-#endif // CRUX_INCLUDE_SURFACE_H_
+#endif  // INCLUDE_SURFACE_H_

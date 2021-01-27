@@ -1,9 +1,10 @@
-#ifndef CRUX_INCLUDE_VERTEX_H_
-#define CRUX_INCLUDE_VERTEX_H_
+// Copyright 2021 Drawoceans
+#ifndef INCLUDE_VERTEX_H_
+#define INCLUDE_VERTEX_H_
 
 #include <optional>
-#include "coordinate.h"
-#include "color.h"
+#include "include/coordinate.h"
+#include "include/color.h"
 
 namespace crux {
 
@@ -14,6 +15,10 @@ class Vertex {
   Vertex(const Coordinate& position_coord, const Color& color);
   Vertex(const Coordinate& position_coord, const Coordinate& texture_coord,
          const Color& color);
+  Vertex(const Vertex& other);
+  Vertex(Vertex&& other);
+  Vertex& operator=(const Vertex& other);
+  Vertex& operator=(Vertex&& other);
 
   Coordinate position_coord() const;
   std::optional<Coordinate> texture_coord() const;
@@ -25,6 +30,6 @@ class Vertex {
   std::optional<Color> color_;
 };
 
-} // namespace
+}  // namespace crux
 
-#endif // CRUX_INCLUDE_VERTEX_H_
+#endif  // INCLUDE_VERTEX_H_

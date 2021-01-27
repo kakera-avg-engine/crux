@@ -1,7 +1,8 @@
-#ifndef CRUX_SRC_BACKEND_INTERFACE_H_
-#define CRUX_SRC_BACKEND_INTERFACE_H_
+// Copyright 2021 Drawoceans
+#ifndef SRC_BACKEND_INTERFACE_H_
+#define SRC_BACKEND_INTERFACE_H_
 
-#include "platform_data.h"
+#include "include/platform_data.h"
 
 namespace crux {
 namespace internal {
@@ -17,7 +18,7 @@ class BackendInterface {
   void* context_ = nullptr;
 };
 
-} // namespace crux::internal
-} // namespace crux
+}  // namespace internal
+}  // namespace crux
 
-#endif // CRUX_SRC_BACKEND_INTERFACE_H_
+#endif  // SRC_BACKEND_INTERFACE_H_

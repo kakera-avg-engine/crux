@@ -1,7 +1,8 @@
-#ifndef CRUX_SRC_BACKEND_D3D12_H_
-#define CRUX_SRC_BACKEND_D3D12_H_
+// Copyright 2021 Drawoceans
+#ifndef SRC_BACKEND_D3D12_H_
+#define SRC_BACKEND_D3D12_H_
 
-#include "backend_interface.h"
+#include "src/backend_interface.h"
 
 namespace crux {
 namespace internal {
@@ -15,12 +16,12 @@ class BackendD3D12 : public BackendInterface {
 
   void Init(const PlatformData& platform_data) override;
 
- #ifdef _WIN32
+#ifdef _WIN32
  private:
- #endif // _WIN32
+#endif  // _WIN32
 };
 
-} // namespace crux::internal
-} // namespace crux
+}  // namespace internal
+}  // namespace crux
 
-#endif // CRUX_SRC_BACKEND_D3D12_H_
+#endif  // SRC_BACKEND_D3D12_H_

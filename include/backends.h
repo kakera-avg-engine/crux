@@ -1,5 +1,6 @@
-#ifndef CRUX_INCLUDE_BACKENDS_H_
-#define CRUX_INCLUDE_BACKENDS_H_
+// Copyright 2021 Drawoceans
+#ifndef INCLUDE_BACKENDS_H_
+#define INCLUDE_BACKENDS_H_
 
 namespace crux {
 
@@ -10,6 +11,6 @@ enum Backend : int {
   kVulkan
 };
 
-} // namespace crux
+}  // namespace crux
 
-#endif // CRUX_INCLUDE_BACKEND_H_
+#endif  // INCLUDE_BACKENDS_H_

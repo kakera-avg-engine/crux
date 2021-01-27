@@ -1,4 +1,5 @@
-#include "color.h"
+// Copyright 2021 Drawoceans
+#include "include/color.h"
 
 crux::Color::Color(uint8_t r, uint8_t g, uint8_t b)
     : r_(r), g_(g), b_(b), a_(0) {}

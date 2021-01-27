@@ -1,8 +1,9 @@
-#include "surface.h"
+// Copyright 2021 Drawoceans
+#include "include/surface.h"
 #include <cassert>
-#include "backend_d3d12.h"
-#include "backend_opengl.h"
-#include "backend_vulkan.h"
+#include "src/backend_d3d12.h"
+#include "src/backend_opengl.h"
+#include "src/backend_vulkan.h"
 
 crux::Surface::Surface(crux::Backend backend,
                        const crux::PlatformData& platform_data,
@@ -27,19 +28,27 @@ void crux::Surface::set_resolution(crux::Resolution resolution) {
   resolution_ = resolution;
 }
 
+crux::Color crux::Surface::clear_color() const {
+  return clear_color_;
+}
+
+void crux::Surface::set_clear_color(crux::Color clear_color) {
+  clear_color_ = clear_color;
+}
+
 void* crux::Surface::ReleaseContext() {
   return actual_backend_->ReleaseContext();
 }
 
-void crux::Surface::Draw(const crux::RenderObject& render_object) {
-
+void crux::Surface::Draw(crux::RenderObject* render_object) {
 }
 
 void crux::Surface::UpdateFrame() {
 }
 
 void crux::Surface::SelectRightBackend() {
-
+  // TODO(drawoceans): Always select OpenGL until other backends are supported.
+  backend_ = crux::Backend::kOpenGL;
 }
 
 void crux::Surface::InitActualBackend(const crux::PlatformData& platform_data) {

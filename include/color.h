@@ -1,5 +1,6 @@
-#ifndef CRUX_INCLUDE_COLOR_H_
-#define CRUX_INCLUDE_COLOR_H_
+// Copyright 2021 Drawoceans
+#ifndef INCLUDE_COLOR_H_
+#define INCLUDE_COLOR_H_
 
 #include <cstdint>
 #include <array>
@@ -16,7 +17,6 @@ class Color {
 
   Color& operator=(const Color& other);
   Color& operator=(Color&& other);
-  
   // Order is r g b a.
   std::array<uint8_t, 4> GetColor() const;
  private:
@@ -26,6 +26,6 @@ class Color {
   uint8_t a_ = 0;
 };
 
-} // namespace crux
+}  // namespace crux
 
-#endif // CRUX_INCLUDE_COLOR_H_
+#endif  // INCLUDE_COLOR_H_

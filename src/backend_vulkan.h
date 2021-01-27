@@ -1,16 +1,15 @@
-#ifndef CRUX_SRC_BACKEND_VULKAN_H_
-#define CRUX_SRC_BACKEND_VULKAN_H_
+// Copyright 2021 Drawoceans
+#ifndef SRC_BACKEND_VULKAN_H_
+#define SRC_BACKEND_VULKAN_H_
 
-#include "backend_interface.h"
+#include "src/backend_interface.h"
 
 namespace crux {
 namespace internal {
 
-class BackendVulkan : public BackendInterface {
-  
-};
+class BackendVulkan : public BackendInterface {};
 
-} // namespace crux::internal
-} // namespace crux
+}  // namespace internal
+}  // namespace crux
 
-#endif // CRUX_SRC_BACKEND_VULKAN_H_
+#endif  // SRC_BACKEND_VULKAN_H_
