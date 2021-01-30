@@ -11,6 +11,8 @@ Notice: It **is not** an universal library but a customized library for Kakera A
 
 ## How to build?
 
+Before building Crux, please ensure that your compiler has full support of C++17. You also need CMake 3.1 or higher version.
+
 (uncomplete)
 
 ## How to use?

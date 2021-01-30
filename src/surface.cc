@@ -1,13 +1,24 @@
 // Copyright 2021 Drawoceans
 #include "include/surface.h"
 #include <cassert>
-#include "src/backend_d3d12.h"
+#include <stdexcept>
 #include "src/backend_opengl.h"
-#include "src/backend_vulkan.h"
 
-crux::Surface::Surface(crux::Backend backend,
-                       const crux::PlatformData& platform_data,
-                       crux::Resolution resolution) {
+#ifdef BUILD_WITH_D3D12_
+# include "src/backend_d3d12.h"
+#endif  // BUILD_WITH_D3D12_
+#ifdef BUILD_WITH_VULKAN_
+# include "src/backend_vulkan.h"
+#endif  // BUILD_WITH_VULKAN_
+
+crux::Surface &crux::Surface::GetSurface() {
+  static crux::Surface surface;
+  return surface;
+}
+
+void crux::Surface::Init(crux::Backend backend,
+                         const crux::PlatformData& platform_data,
+                         crux::Resolution resolution) {
   if (backend == crux::Backend::kAuto) {
     SelectRightBackend();
   } else {
@@ -52,21 +63,28 @@ void crux::Surface::SelectRightBackend() {
 }
 
 void crux::Surface::InitActualBackend(const crux::PlatformData& platform_data) {
+  if (backend_) {
+    throw std::runtime_error("Backend is reinitialized.");
+  }
   switch (backend_) {
-    case crux::Backend::kDirect3D12: {
-      actual_backend_ = std::make_unique<crux::internal::BackendD3D12>();
-      break;
-    }
     case crux::Backend::kOpenGL: {
       actual_backend_ = std::make_unique<crux::internal::BackendOpenGL>();
       break;
     }
+#ifdef BUILD_WITH_D3D12_
+    case crux::Backend::kDirect3D12: {
+      actual_backend_ = std::make_unique<crux::internal::BackendD3D12>();
+      break;
+    }
+#endif  // BUILD_WITH_D3D12_
+#ifdef BUILD_WITH_VULKAN_
     case crux::Backend::kVulkan: {
       actual_backend_ = std::make_unique<crux::internal::BackendVulkan>();
       break;
     }
+#endif  // BUILD_WITH_VULKAN_
     default: {
-      assert(false);
+      throw std::invalid_argument("Un supported backend.");
     }
   }
   actual_backend_->Init(platform_data);

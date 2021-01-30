@@ -2,11 +2,19 @@
 #ifndef INCLUDE_VERTEX_H_
 #define INCLUDE_VERTEX_H_
 
+#include <cstdint>
 #include <optional>
 #include "include/coordinate.h"
 #include "include/color.h"
 
 namespace crux {
+
+enum VertexAlignment : uint8_t {
+  kPositionOnly = 0,
+  kHasTexture = 0xf0u,
+  kHasColor = 0xfu,
+  kHasColorAndTexture = 0xffu
+};
 
 class Vertex {
  public:
@@ -23,11 +31,13 @@ class Vertex {
   Coordinate position_coord() const;
   std::optional<Coordinate> texture_coord() const;
   std::optional<Color> color() const;
+  VertexAlignment alignment() const;
 
  private:
   Coordinate position_coord_;
   std::optional<Coordinate> texture_coord_;
   std::optional<Color> color_;
+  VertexAlignment alignment_;
 };
 
 }  // namespace crux

@@ -7,10 +7,10 @@ namespace crux {
 struct Coordinate {
   union {
     struct {
-      int x, y;
+      float x, y;
     };
     struct {
-      int s, t;
+      float s, t;
     };
   };
 };

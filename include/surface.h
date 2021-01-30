@@ -16,13 +16,17 @@ namespace internal { class BackendInterface; }
 
 class Surface {
  public:
+  static Surface& GetSurface();
   // If platform_data.context is not nullptr, the ownership of context will be
   // transferred to the surface. You can call ReleaseContext() to return the
   // ownership back.
   // If backend is kAuto, the surface will create graphic context by itself
   // and ignore the given value of platform_data.context.
-  Surface(Backend backend, const PlatformData& platform_data,
-          Resolution resolution);
+  void Init(Backend backend, const PlatformData& platform_data,
+            Resolution resolution);
+
+  Surface(const Surface&) = delete;
+  Surface& operator=(const Surface&) = delete;
 
   Backend backend() const;
 
@@ -38,13 +42,14 @@ class Surface {
   void UpdateFrame();
 
  private:
+  Surface() = default;
   void SelectRightBackend();
   void InitActualBackend(const PlatformData& platform_data);
 
   Backend backend_;
   Resolution resolution_;
   Color clear_color_;
-  std::unique_ptr<internal::BackendInterface> actual_backend_;
+  static std::unique_ptr<internal::BackendInterface> actual_backend_;
 };
 
 }  // namespace crux

@@ -15,6 +15,7 @@ class BackendOpenGL : public BackendInterface {
   ~BackendOpenGL();
 
   void Init(const PlatformData& platform_data) override;
+  void CreateVertexBuffer() override;
 };
 
 }  // namespace internal

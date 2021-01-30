@@ -15,10 +15,6 @@ class BackendD3D12 : public BackendInterface {
   ~BackendD3D12();
 
   void Init(const PlatformData& platform_data) override;
-
-#ifdef _WIN32
- private:
-#endif  // _WIN32
 };
 
 }  // namespace internal

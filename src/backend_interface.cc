@@ -14,3 +14,7 @@ void* crux::internal::BackendInterface::ReleaseContext() {
 crux::internal::BackendInterface::operator bool() const {
   return context_ != nullptr;
 }
+
+void crux::internal::BackendInterface::Draw(crux::RenderObject* render_object) {
+  render_object_queue_.Push(render_object);
+}
