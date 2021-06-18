@@ -29,7 +29,7 @@ Create a surface by initializing a `Surface` class defined in `include/surface.h
 
 ### 3. Prepare the vertex input.
 
-As mentioned before, Crux is a low-level 2D graphic library. So it means you need to create the whole graphic pipeline to render something although it's a simple version. Start from this step you have to create a very simple graphic pipeline, but in fact many features of an actual graphic pipeline like OpenGL's and Vulkan's are unsupported in Crux, so you just have to prepare the vertex data and shaders. Unlike OpenGL or other "real" graphic APIs, there is no normalized device coordinates in Crux, all coordinates are transformed by a 2D projection matrix so you can use screen coordinates directly.
+As mentioned before, Crux is a low-level 2D graphic library. So it means you need to create the whole graphic pipeline to render something although it's a simple version. Start from this step you have to create a very simple graphic pipeline, but in fact many features of an actual graphic pipeline like OpenGL's and Vulkan's are unsupported in Crux, so you just have to prepare the vertex data and shaders. Like OpenGL and other graphic APIs, the normalized device coordinates are also needed in Crux.
 
 Include `include/vertex.h` to create a vertex. It needs a coordinate as position of screen, and optional color information and texture coordinate. The definition of texture coordinates is same as OpenGL's, (0, 0) means lower-left, (0, 1) means top-left, (1, 0) means lower-right, (1, 1) means top-right. See [this atricle](https://learnopengl.com/Getting-started/Textures) for more information.
 
@@ -60,7 +60,7 @@ Once the render object is created, you can call the `Draw()` method of the surfa
 ```
 MIT License
 
-Copyright (c) 2021 Kakera AVG Engine
+Copyright (c) 2021 Drawoceans Runtime <dort@kakera.moe>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
